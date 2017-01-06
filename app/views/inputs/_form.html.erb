@@ -1,0 +1,78 @@
+<%= form_for(@input) do |f| %>
+  <% if @input.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@input.errors.count, "error") %> prohibited this input from being saved:</h2>
+
+      <ul>
+      <% @input.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :live_event_id %><br>
+    <%= f.text_field :live_event_id, value: @live_event_id %>
+  </div>
+  <div class="field">
+    <%= f.label :input_label %><br>
+    <%= f.text_field :input_label %>
+  </div>
+  <div class="field">
+    <%= f.label :loop_source %><br>
+    <%= f.check_box :loop_source %>
+  </div>
+  <div class="field">
+    <%= f.label :input_type %><br>
+    <%= f.collection_select :input_type, InputType.all, :id, :type_name, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :quad %><br>
+    <%= f.check_box :quad %>
+  </div>
+  <div class="field">
+    <%= f.label :uri %><br>
+    <%= f.text_field :uri %>
+  </div>
+
+  <strong> Audio Selector </strong></br></br>
+  <%= f.fields_for :audio_selector do |ff| %>
+
+    <div class="field">
+      <%= ff.label :audio_id %><br>
+      <%= ff.text_field :audio_id %>
+    </div>
+
+    <div class="field">
+      <%= ff.label :default_selection %>
+      <%= ff.check_box :default_selection %>
+    </div>
+    <div class="field">
+      <%= ff.label :track %><br>
+      <%= ff.text_field :track %>
+    </div>
+  <% end %>
+
+  <strong> Video Selector </strong></br></br>  
+  <%= f.fields_for :video_selector do |ff| %>
+
+    <div class="field">
+      <%= ff.label :video_id %><br>
+      <%= ff.text_field :video_id %>
+    </div>
+
+    <div class="field">
+      <%= ff.label :default_selection %>
+      <%= ff.check_box :default_selection %>
+    </div>
+    <div class="field">
+      <%= ff.label :track %><br>
+      <%= ff.text_field :track %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<%= form_for(@input_processing) do |f| %>
+  <% if @input_processing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@input_processing.errors.count, "error") %> prohibited this input_processing from being saved:</h2>
+
+      <ul>
+      <% @input_processing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :event_id %><br>
+    <%= f.number_field :event_id %>
+  </div>
+  <div class="field">
+    <%= f.label :input_id %><br>
+    <%= f.number_field :input_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

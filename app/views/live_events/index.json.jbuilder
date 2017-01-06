@@ -1,0 +1,1 @@
+json.array! @live_events, partial: 'live_events/live_event', as: :live_event

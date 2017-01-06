@@ -1,0 +1,1 @@
+json.partial! "audio_selectors/audio_selector", audio_selector: @audio_selector

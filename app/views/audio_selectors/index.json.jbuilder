@@ -1,0 +1,1 @@
+json.array! @audio_selectors, partial: 'audio_selectors/audio_selector', as: :audio_selector

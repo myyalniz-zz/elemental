@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+<center><strong>Listing Inputs</strong></center>
+
+<%= form_tag inputs_path, :method => "get" do %>
+  <% if @selected.to_i == -1 then %>
+    <%= collection_select(:live_event, :event_id, LiveEvent.all, :event_id, :name, :prompt => true   ) %>
+  <% else %>
+    <%= collection_select(:live_event, :event_id, LiveEvent.all, :event_id, :name, :prompt => true, :selected => @selected   ) %>
+  <% end %>  
+
+  <%= submit_tag "Filter inputs" %>
+<% end %>
+<br/>
+<br/>
+
+<table class="table table-bordered table-striped" id="sortable">
+  <thead>
+    <tr>
+      <th>
+        Live event
+      </th>
+      <th>
+        Input label
+      </th>
+      <th>
+        Loop source
+      </th>
+      <th>
+        Quad
+      </th>
+      <th>
+        Input type
+      </th>
+      <th>
+        Uri
+      </th>
+      <th>
+        Audio
+      </th>
+      <th>
+        Video
+      </th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% @inputs.each do |input| %>
+      <tr>
+        <td><%= link_to input.live_event.name, live_event_path(input.live_event), class: 'btn-sm btn-default' %></td>
+        <td><%= input.input_label %></td>
+        <td><%= input.loop_source %></td>
+        <td><%= input.input_type %></td>
+        <td><%= input.quad %></td>
+        <td><%= input.uri %></td>
+        <td><%= link_to input.audio_selector.id, audio_selector_path(input.audio_selector), class: 'btn-sm btn-default' %></td>
+        <td><%= link_to input.video_selector.id, video_selector_path(input.video_selector) , class: 'btn-sm btn-default' %></td>
+        <td><input type="checkbox" id="<%= input.id %>" class="live_event_input" name="post[added] value="1" /> <%= link_to 'Add', single_add_wids_input_processings_path(id: input.id, event_id: input.live_event ), remote: true, class: 'btn-sm btn-default', data: {'input-id': input.id}  %> </td>
+        <td><%= link_to 'Show', input, class: 'btn-sm btn-default' %></td>
+        <td><%= link_to 'Edit', edit_input_path(input), class: 'btn-sm btn-default' %></td>
+        <td><%= link_to 'Destroy', input, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-sm btn-default' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Input', new_input_path, class: 'btn-sm btn-success' %>
+
+<button id="AddInputs" >Add inputs</button>
+
+<button id="ReplacePlaylist" >Replace Playlist</button>
+
+</div>
+
+<div id="modal-window-prepare" class="modal fade"></div>
+<div id="modal-window-activate" class="modal fade"></div>
+<div id="modal-window-delete" class="modal fade"></div>
+<div id="modal-window-single-add" class="modal fade"></div>
+<div id="modal-window-change-attributes" class="modal fade"></div>

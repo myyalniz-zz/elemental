@@ -1,0 +1,30 @@
+<%= form_for(@audio_selector) do |f| %>
+  <% if @audio_selector.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@audio_selector.errors.count, "error") %> prohibited this audio_selector from being saved:</h2>
+
+      <ul>
+      <% @audio_selector.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :audio_id %><br>
+    <%= f.number_field :audio_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :default_selection %><br>
+    <%= f.check_box :default_selection %>
+  </div>
+  <div class="field">
+    <%= f.label :track %><br>
+    <%= f.number_field :track %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

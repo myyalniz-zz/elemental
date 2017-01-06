@@ -1,0 +1,32 @@
+<div class="container">
+  
+<p id="notice"><%= notice %></p>
+
+<center><strong>Input Types</strong></center>
+
+<table class="table table-bordered table-striped" id="sortable">
+  <thead>
+    <tr>
+      <th>
+        Type Name
+      </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% @input_types.each do |input_type| %>
+      <tr>
+        <td><%= input_type.type_name %></td>
+        <td><%= link_to 'Show', input_type %></td>
+        <td><%= link_to 'Edit', edit_input_type_path(input_type) %></td>
+        <td><%= link_to 'Destroy', input_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Input type', new_input_type_path %>
+</div>

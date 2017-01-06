@@ -1,0 +1,36 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+
+      </div>
+      
+      <div class="modal-body">
+        
+        <table class="table table-bordered table-striped" id="sortable">
+          <thead>
+          <tr>
+            
+            <th>Live Event</th>
+            <th>Input Label</th>
+            <th>Uri</th>
+          </tr>
+            <% items.each do |input| %>
+              <tr>
+              <th><%= input.live_event.name %></th>
+              <th><%= input.input_label %></th>
+              <th><%= input.uri %></th>
+              </tr>
+            <% end %>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <%= form_tag("/input_processings/replace", method: "get") do %>
+          <%= hidden_field_tag(:checkedInputs, checkedInputs ) %>
+          <%= hidden_field_tag(:event_id, event_id ) %>
+          <%= submit_tag("Replace Playlist") %>
+        <% end %>
+        <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %> 
+      </div>
+  </div>
+</div>        

@@ -1,0 +1,2 @@
+module InputTypesHelper
+end

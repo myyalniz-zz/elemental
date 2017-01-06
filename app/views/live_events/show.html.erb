@@ -1,0 +1,129 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="container">
+
+<p>
+  <strong>Event with name : <%= @live_event_name %> and id: <%= @live_event_event_id %></strong>
+  <%= link_to 'Edit', edit_live_event_path(@live_event_event_id), class: 'btn-sm btn-default' %>  <%= link_to 'Back', live_events_path, class: 'btn-sm btn-default' %> 
+</p>
+
+<table class="table table-bordered table-striped" id="sortable">
+  <thead>
+    <tr>
+      <th>
+        Order
+      </th>
+      <th>
+        Active
+      </th>
+      <th>
+        Uri
+      </th>
+      <th>
+        Show XML
+      </th>
+      <th>
+        Prepare
+      </th>
+      <th>
+        Activate
+      </th>
+      <th>
+        Delete
+      </th>
+    </tr>
+  </thead>
+  <tbody id="sortable-inputs" >
+<% @input_elements.each  do |input|  %>
+
+  <% if input.xpath('input_label').text.size > 0 then %> 
+    <tr class="item" id="item_<%= input.xpath('order').text %>" >
+    <td><%= input.xpath('order').text %></td><td><%= input.xpath('active').text %></td> <td><% if input.xpath('network_input/uri').text.length > 0 then %> <%= input.xpath('network_input/uri').text %> <% else %> <%= input.xpath('file_input/uri').text %> <% end %> </td>
+    <td><%= link_to 'Show XML <i class="glyphicon glyphicon-zoom-in"></i>'.html_safe, change_attributes_wlabel_input_processings_path(live_event_id: @live_event_event_id, input_label: input.xpath('input_label').text ), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' }  %>  </td>
+    <td><%= link_to 'Prepare <i class="glyphicon glyphicon-ok"></i>'.html_safe, prepare_wlabel_input_processings_path(live_event_id: @live_event_event_id, input_label: input.xpath('input_label').text ), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' }  %>  </td>
+    <td><%= link_to 'Activate <i class="glyphicon glyphicon-film"></i>'.html_safe, activate_wlabel_input_processings_path(live_event_id: @live_event_event_id, input_label: input.xpath('input_label').text ), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' }  %>  </td>
+    <td><%= link_to 'Delete <i class="glyphicon glyphicon-remove"></i>'.html_safe, delete_wlabel_input_processings_path(live_event_id: @live_event_event_id, input_label: input.xpath('input_label').text ), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' }  %>  </td>
+  <% else %> 
+    <tr class="item" id="item_<%= input.xpath('order').text %>">
+    <td><%= input.xpath('order').text %></td><td><%= input.xpath('active').text %></td> <td><% if input.xpath('network_input/uri').text.length > 0 then %> <%= input.xpath('network_input/uri').text %> <% else %> <%= input.xpath('file_input/uri').text %> <% end %> </td>
+    <td><%= link_to 'Show XML <i class="glyphicon glyphicon-zoom-in"></i>'.html_safe, change_attributes_wid_input_processings_path( live_event_id: @live_event_event_id, input_id: input.xpath('id').text ), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' }  %> </td>
+    <td><%= link_to 'Prepare <i class="glyphicon glyphicon-ok"></i>'.html_safe, prepare_wid_input_processings_path( live_event_id: @live_event_event_id, input_id: input.xpath('id').text ), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' }  %>  </td>
+    <td><%= link_to 'Activate <i class="glyphicon glyphicon-film"></i>'.html_safe, activate_wid_input_processings_path( live_event_id: @live_event_event_id, input_id: input.xpath('id').text ), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' }  %>  </td>
+    <td><%= link_to 'Delete <i class="glyphicon glyphicon-remove"></i>'.html_safe, delete_wid_input_processings_path( live_event_id: @live_event_event_id, input_id: input.xpath('id').text ), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' }  %>  </td>
+  <% end %>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+
+<br><br>
+
+
+
+<table class="table table-bordered table-striped" id="sortable">
+  <thead>
+    <tr>
+      <th>
+        Input label
+      </th>
+      <th>
+        Loop source
+      </th>
+      <th>
+        Uri
+      </th>
+      <th>
+        Audio
+      </th>
+      <th>
+        Video
+      </th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% @inputs.each do |input| %>
+      <tr>
+        <td><%= input.input_label %></td>
+        <td><%= input.loop_source %></td>
+        <td><%= input.uri %></td>
+        <td><%= link_to input.audio_selector.id, audio_selector_path(input.audio_selector), class: 'btn-sm btn-default' %></td>
+        <td><%= link_to input.video_selector.id, video_selector_path(input.video_selector) , class: 'btn-sm btn-default' %></td>
+        <td><input type="checkbox" id="<%= input.id %>" class="live_event_input" name="post[added] value="1" /> <%= link_to 'Add', single_add_wids_input_processings_path(id: input.id, event_id: input.live_event ), remote: true, class: 'btn-sm btn-default', data: {'input-id': input.id}  %> </td>
+        <td><%= link_to 'Show', input_path(id: input.id, live_event_id: @live_event_event_id), class: 'btn-sm btn-default' %></td>
+        <td><%= link_to 'Edit', edit_input_path(id: input.id, live_event_id: @live_event_event_id ), class: 'btn-sm btn-default' %></td>
+        <td><%= link_to 'Destroy', input, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-sm btn-default' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+
+<%= link_to 'New Input', new_input_path(live_event_id: @live_event_event_id), class: 'btn-sm btn-success' %>
+
+<button id="AddInputs" data-event-id="<%= @live_event_event_id %>" >Add inputs</button>
+
+<button id="ReplacePlaylist" data-event-id="<%= @live_event_event_id %>" >Replace Playlist</button>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+<div id="modal-window-prepare" class="modal fade"></div>
+<div id="modal-window-activate" class="modal fade"></div>
+<div id="modal-window-delete" class="modal fade"></div>
+<div id="modal-window-single-add" class="modal fade"></div>
+<div id="modal-window-change-attributes" class="modal fade"></div>
+
+<div id="modal-window-add-inputs" class="modal fade"></div>
+<div id="modal-window-replace-inputs" class="modal fade"></div>
+

@@ -1,0 +1,1 @@
+json.array! @input_processings, partial: 'input_processings/input_processing', as: :input_processing

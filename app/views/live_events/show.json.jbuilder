@@ -1,0 +1,1 @@
+json.partial! "live_events/live_event", live_event: @live_event

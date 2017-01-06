@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+<strong><center>Listing Live Events</center></strong>
+
+<table class="table table-bordered table-striped" id="sortable">
+  <thead>
+    <tr>
+      <th>
+        Event Name
+      </th>
+      <th>
+        Event Id
+      </th>
+      <th colspan=6 ></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @live_events.each do |live_event| %>
+        <tr  class="item">
+        <td><%= link_to live_event.xpath("name").text + " Playlist", live_event_path(id: live_event.xpath('@href')) %></td>
+        <td><%= live_event.xpath("@href").text.gsub(/\/live_events\/(\d*)/, '\1') %></td>
+        
+        <td><%= link_to 'Set Priority', set_priority_live_events_path(event_detail: live_event.xpath("@href").text), { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window' } %></td>
+        <td><%= link_to 'Start', start_live_events_path(event_detail: live_event.xpath("@href").text), class: 'btn-sm btn-success', data: { confirm: 'Starting live event?' } %></td>
+        <td><%= link_to 'Stop', stop_live_events_path(event_detail: live_event.xpath("@href").text), class: 'btn-sm btn-alert', data: { confirm: 'Stoping live event?' } %></td>
+        <td><%= link_to 'Cancel', cancel_live_events_path(event_detail: live_event.xpath("@href").text), class: 'btn-sm btn-alert', data: { confirm: 'Canceling live event?' } %></td>
+        <td><%= link_to 'Archive', archive_live_events_path(event_detail: live_event.xpath("@href").text), class: 'btn-sm btn-alert', data: { confirm: 'Archiving live event?' } %></td>
+        <td><%= link_to 'Reset', reset_live_events_path(event_detail: live_event.xpath("@href").text), class: 'btn-sm btn-alert', data: { confirm: 'Reseting live event?' } %></td>
+        <!--
+        <td><%= link_to 'Edit', edit_live_event_path(live_event.xpath("id").text.to_i), class: 'btn-sm btn-default' %></td>
+        <td><%= link_to 'Destroy', live_event_url(live_event.xpath("id").text.to_i), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-sm btn-danger' %></td>
+        -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Live event', new_live_event_path, class: 'btn-sm btn-default' %>
+
+</div>
+
+<div id="modal-window-set-priority" class="modal fade"></div>

@@ -1,0 +1,69 @@
+
+<div class="container">
+  
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Live event:</strong>
+  <%= @input.live_event_id %>
+</p>
+
+<p>
+  <strong>Input label:</strong>
+  <%= @input.input_label %>
+</p>
+
+<p>
+  <strong>Loop source:</strong>
+  <%= @input.loop_source %>
+</p>
+
+<p>
+  <strong>Input type:</strong>
+  <%= @input.input_type %>
+</p>
+
+<p>
+  <strong>Quad:</strong>
+  <%= @input.quad %>
+</p>
+
+<p>
+  <strong>Uri:</strong>
+  <%= @input.uri %>
+</p>
+
+<p>
+  <strong>Audio Selector id:</strong>
+  <%= @input.audio_selector.audio_id %>
+</p>
+
+<p>
+  <strong>Audio Selector default selection:</strong>
+  <%= @input.audio_selector.default_selection %>
+</p>
+
+<p>
+  <strong>Audio Selector track:</strong>
+  <%= @input.audio_selector.track %>
+</p>
+
+<p>
+  <strong>Video Selector id:</strong>
+  <%= @input.video_selector.video_id %>
+</p>
+
+<p>
+  <strong>Video Selector default selection:</strong>
+  <%= @input.video_selector.default_selection %>
+</p>
+
+<p>
+  <strong>Video Selector track:</strong>
+  <%= @input.video_selector.track %>
+</p>
+
+<%= link_to 'Edit', edit_input_path(@input), class: 'btn-sm btn-default' %> |
+<%= link_to 'Back', inputs_path, class: 'btn-sm btn-default' %>
+
+</div>

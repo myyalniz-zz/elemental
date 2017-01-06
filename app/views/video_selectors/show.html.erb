@@ -1,0 +1,23 @@
+<div class="container">
+  
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Video Id:</strong>
+  <%= @video_selector.video_id %>
+</p>
+
+<p>
+  <strong>Default selection:</strong>
+  <%= @video_selector.default_selection %>
+</p>
+
+<p>
+  <strong>Track:</strong>
+  <%= @video_selector.track %>
+</p>
+
+<%= link_to 'Edit', edit_video_selector_path(@video_selector) %> |
+<%= link_to 'Back', video_selectors_path %>
+
+</div>

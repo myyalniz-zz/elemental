@@ -1,0 +1,2 @@
+json.extract! input, :id, :live_event_id, :input_label, :loop_source, :input_type, :quad, :uri, :audio_selector_id, :video_selector_id, :created_at, :updated_at
+json.url input_url(input, format: :json)

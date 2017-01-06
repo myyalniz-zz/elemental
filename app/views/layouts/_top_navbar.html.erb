@@ -1,0 +1,13 @@
+<%= nav_bar :fixed => :top, :brand => "Baran Bilişim", :responsive => true do %>
+    <%= menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_divider %>
+        <%= drop_down "Elemental" do %>
+            <%= menu_item "Live Events", live_events_path %>
+        <% end %>
+        <%= menu_item "About Us", root_path %>
+        <%= menu_item "Contact", root_path %>
+    <% end %>
+<% end %>
+<br/>
+<br/>

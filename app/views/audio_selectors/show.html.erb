@@ -1,0 +1,23 @@
+<div class="container">
+  
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Audio Id:</strong>
+  <%= @audio_selector.audio_id %>
+</p>
+
+<p>
+  <strong>Default selection:</strong>
+  <%= @audio_selector.default_selection %>
+</p>
+
+<p>
+  <strong>Track:</strong>
+  <%= @audio_selector.track %>
+</p>
+
+<%= link_to 'Edit', edit_audio_selector_path(@audio_selector) %> |
+<%= link_to 'Back', audio_selectors_path %>
+
+</div>

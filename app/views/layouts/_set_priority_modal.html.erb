@@ -1,0 +1,28 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+        <strong><center>Set priority</center></strong>
+        <%= form_tag({controller: "live_events", action: "priority"}, method: "get", class: "form-inline") do %>
+        
+          <input name="live_event_id" type="hidden" value="<%= @id %>" />
+          <div class="input-group">
+            <input name="priority" type="text" value="<%= @priority %>" />
+          </div>
+          <%= button_tag(type: 'submit', class: "btn-sm btn-danger pull-right") do %>
+                <i class="icon-ok icon-white"></i> Set Priority
+          <% end %>
+          <%= link_to "Cancel", "#", class: "btn-sm btn-default pull-right", data: {dismiss: "modal"} %>
+          
+        <% end %>
+      </div>
+      
+      <div class="modal-body">
+        <ul class="errors"></ul>
+
+      </div>
+      <!--
+      <div class="modal-footer">
+      </div>
+      -->
+  </div>
+</div>        

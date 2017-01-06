@@ -1,0 +1,36 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+        <strong><center>Activate Input</center></strong>
+        <%= form_tag({controller: "input_processings", action: "activate"}, method: "get", class: "form-inline") do %>
+        <div class="form-group">
+          <input name="live_event_id" type="hidden" value="<%= @event_id %>" />
+          <% if @input_label.present? %>
+            Label:  <input name="input_label" type="text" value="<%= @input_label %>" />
+            <!-- <pre>input label : <%= @input_label %></pre> -->
+          <% elsif @input_id.present?  %>
+            ID: <input name="input_id" type="text" value="<%= @input_id %>" />
+            <!-- <pre>input id : <%= @input_id %></pre> -->
+          <% end %>
+            UTC time: <input name="utc_time" type="text" value="2015123T235959.999" />
+        </div>
+        <br/>
+
+          <%= button_tag(type: 'submit', class: "btn-sm btn-success pull-right") do %>
+                <i class="icon-ok icon-white"></i> Activate
+          <% end %>
+          <%= link_to "Cancel", "#", class: "btn-sm btn-default pull-right", data: {dismiss: "modal"} %>
+
+        <% end %>
+      </div>
+      
+      <div class="modal-body">
+        <ul class="errors"></ul>
+
+      </div>
+<!--      <div class="modal-footer">
+                   <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %> 
+      </div>
+      -->
+  </div>
+</div>        

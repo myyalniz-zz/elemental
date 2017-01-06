@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Input Processings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Input</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @input_processings.each do |input_processing| %>
+      <tr>
+        <td><%= input_processing.event_id %></td>
+        <td><%= input_processing.input_id %></td>
+        <td><%= link_to 'Show', input_processing %></td>
+        <td><%= link_to 'Edit', edit_input_processing_path(input_processing) %></td>
+        <td><%= link_to 'Destroy', input_processing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Input processing', new_input_processing_path %>

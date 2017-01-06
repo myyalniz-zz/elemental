@@ -1,0 +1,1 @@
+json.partial! "video_selectors/video_selector", video_selector: @video_selector

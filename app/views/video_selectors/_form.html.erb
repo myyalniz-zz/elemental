@@ -1,0 +1,30 @@
+<%= form_for(@video_selector) do |f| %>
+  <% if @video_selector.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video_selector.errors.count, "error") %> prohibited this video_selector from being saved:</h2>
+
+      <ul>
+      <% @video_selector.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :video_id %><br>
+    <%= f.number_field :video_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :default_selection %><br>
+    <%= f.check_box :default_selection %>
+  </div>
+  <div class="field">
+    <%= f.label :track %><br>
+    <%= f.number_field :track %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

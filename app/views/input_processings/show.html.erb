@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @input_processing.event_id %>
+</p>
+
+<p>
+  <strong>Input:</strong>
+  <%= @input_processing.input_id %>
+</p>
+
+<%= link_to 'Edit', edit_input_processing_path(@input_processing) %> |
+<%= link_to 'Back', input_processings_path %>
