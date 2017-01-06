@@ -1,2 +1,0 @@
-# elemental
-Elemental Management console
