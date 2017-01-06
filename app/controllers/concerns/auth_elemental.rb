@@ -7,13 +7,13 @@ module AuthElemental
     
     result = Hash.new
     
-    result["X-Auth-User"] = 'firatg@baranbilisim.com.tr'
+    result["X-Auth-User"] = 'elem@example.com'
     
     result['X-Auth-Expires'] =  curr_time.to_s
     
-    to_digest = URI::parse(URI.escape(restfull_url)).to_s + 'firatg@baranbilisim.com.tr' + "HlkJKH0Z0ZClFCg10knh" + curr_time.to_s
+    to_digest = URI::parse(URI.escape(restfull_url)).to_s + 'elem@example.com' + "XXXXXXXXXXXXXXXXXXXXXXXXX" + curr_time.to_s
     
-    result['X-Auth-Key']  = Digest::MD5.hexdigest("HlkJKH0Z0ZClFCg10knh" + Digest::MD5.hexdigest(to_digest)) 
+    result['X-Auth-Key']  = Digest::MD5.hexdigest("XXXXXXXXXXXXXXXXXXXXXXXXX" + Digest::MD5.hexdigest(to_digest)) 
     
     return result
     
